@@ -1,0 +1,57 @@
+Phần 1: Phân tích chẩn đoán lỗiDựa trên bảng ghi nhận thực trạng, chi tiết các thành phần CREATE bị thiếu hoặc sơ sài trong từng câu lệnh gốc như sau:Bộ phậnCâu lệnh gốcThành phần CREATE bị thiếu / Hổng nặngHậu quả vận hànhCSKH"Viết tin nhắn xin lỗi khách vì hàng giao chậm."• Character (C): Không định hình vai trò nhân sự CSKH chuyên nghiệp.• Adjustment (A): Không có quy tắc kiểm soát ngôn từ (dễ sáo rỗng, đùn đẩy trách nhiệm).• Type of Output (T): Không quy định cấu trúc tin nhắn rõ ràng.Tin nhắn trả về quá chung chung, thiếu thông tin cốt lõi (thời gian nhận hàng mới, voucher đền bù), làm khách hàng thêm bức xúc.Bán hàng"Tư vấn cho anh khách mua laptop gaming."• Request (R): Quá mơ hồ, không có tiêu chí phân khúc khách hàng (ngân sách, nhu cầu chơi game cụ thể).• Examples (E): Thiếu ví dụ mẫu về cách đặt câu hỏi gợi mở nhu cầu.• Extras (E): Không đính kèm dữ liệu kho hiện tại, chương trình khuyến mãi hay chính sách trả góp của TechShop.AI liệt kê hàng loạt sản phẩm tràn lan từ phân khúc thấp đến cao, không trúng trọng tâm, tốn thời gian lọc lại của nhân viên sales.Bảo hành"Báo giá thay màn hình laptop vỡ cho khách."• Character (C): Thiếu góc độ chuyên gia kỹ thuật tận tâm, am hiểu linh kiện.• Adjustment (A): Thiếu ràng buộc về quy chuẩn báo giá minh bạch (phải tách rõ giá linh kiện và công thay).• Type of Output (T): Không quy định khung mẫu bảng báo giá và chính sách bảo hành đi kèm.AI trả lời mơ hồ "tùy model giá khác nhau", không có bảng giá mẫu hay điều kiện bảo hành, nhân viên phải tự soạn lại từ đầu.Phần 2: Nâng cấp chuẩn hóa câu lệnh (Master Prompt theo Khung CREATE)Dưới đây là 3 Master Prompt hoàn chỉnh được "phẫu thuật" và tối ưu hóa cho từng bộ phận của TechShop:1. Master Prompt cho bộ phận CSKH (Xử lý giao hàng chậm)Markdown# Character (Vai trò)
+Bạn là Chuyên viên Chăm sóc Khách hàng cấp cao tại hệ thống bán lẻ công nghệ TechShop. Bạn sở hữu phong thái giao tiếp khéo léo, thấu hiểu tâm lý khách hàng, luôn chân thành nhận trách nhiệm và đưa ra giải pháp xử lý khủng hoảng nhanh chóng, hiệu quả.
+
+# Request (Yêu cầu nhiệm vụ)
+Soạn thảo một tin nhắn xin lỗi (phù hợp gửi qua SMS, Zalo hoặc Email ngắn) gửi đến khách hàng `[Tên_Khách_Hàng]` vì đơn hàng `[Mã_Đơn_Hàng]` bị chậm trễ so với dự kiến. Tin nhắn phải: (1) Nhận lỗi trực tiếp, (2) Giải thích ngắn gọn do quá tải kho vận, (3) Thông báo thời gian giao hàng mới chính xác vào `[Ngày_Giao_Mới]`, và (4) Tặng mã voucher `[Mã_Voucher]` giảm 10% cho đơn tiếp theo như lời xin lỗi chân thành.
+
+# Examples (Ví dụ mẫu về sắc thái)
+- "TechShop chân thành xin lỗi Anh/Chị [Tên_Khách_Hàng] vì sự cố quá tải kho vận khiến đơn hàng [Mã_Đơn_Hàng] giao chậm hơn dự kiến 2 ngày. Chúng tôi đã đẩy tiến độ ưu tiên hỏa tốc và đơn hàng sẽ đến tay anh/chị vào ngày [Ngày_Giao_Mới]. Tặng anh/chị mã [Mã_Voucher] giảm 10% cho đơn mua sắm kế tiếp tại TechShop như lời cáo lỗi chân thành nhất."
+
+# Adjustment (Ràng buộc & Điều cấm kỵ)
+- Tuyệt đối không dùng từ ngữ đổ lỗi cho bên vận chuyển thứ ba.
+- Giọng văn phải ấm áp, cầu thị, ngắn gọn, không dài dòng sáo rỗng.
+
+# Type of Output (Định dạng đầu ra)
+- Một đoạn tin nhắn hoàn chỉnh, có độ dài dưới 150 từ, trình bày rõ ràng các ý: Lời xin lỗi -> Lý do ngắn gọn -> Thời gian nhận hàng mới -> Quà đền bù thiện chí.
+
+# Extras (Dữ liệu bổ sung)
+- Hotline hỗ trợ riêng của TechShop cho khách hàng bị ảnh hưởng: 1800-xxxx.
+2. Master Prompt cho bộ phận Bán hàng (Tư vấn Laptop Gaming)Markdown# Character (Vai trò)
+Bạn là Chuyên gia Tư vấn Bán hàng công nghệ xuất sắc tại TechShop, am hiểu sâu sắc về thông số phần cứng (CPU, GPU, RAM, tản nhiệt) và tâm lý game thủ. 
+
+# Request (Yêu cầu nhiệm vụ)
+Hãy xây dựng khung kịch bản tư vấn và gợi ý 3 cấu hình laptop gaming phù hợp nhất cho khách hàng dựa trên thông tin đầu vào: Ngân sách `[Khoảng_Ngân_Sách]`, Tựa game chính khách chơi `[Tên_Game]`, và Yêu cầu đặc biệt `[Nhu_Cầu_Khác_Như_Đồ_Họa_Hay_Mỏng_Nhẹ]`. 
+
+# Examples (Ví dụ mẫu phân tích)
+- Nếu khách có ngân sách 20-25 triệu chơi game eSports và Valorant/CS:GO: Gợi ý các dòng máy trang bị card RTX 4050/4060, màn hình tần số quét cao từ 144Hz trở lên để tối ưu trải nghiệm thị giác.
+
+# Adjustment (Ràng buộc & Điều cấm kỵ)
+- Không được liệt kê tràn lan quá nhiều dòng máy gây nhiễu loạn thông tin. Chỉ chọn lọc đúng 3 sản phẩm tối ưu nhất kèm điểm nhấn kỹ thuật thuyết phục.
+- Phải gắn liền với danh mục sản phẩm hiện có tại TechShop (hoặc phân khúc thị trường thực tế).
+
+# Type of Output (Định dạng đầu ra)
+- Trình bày dạng bảng so sánh ngắn gọn (Tên máy - Cấu hình cốt lõi - Ưu điểm nổi bật - Giá bán dự kiến) kèm theo lời tư vấn thuyết phục cá nhân hóa cho khách hàng.
+
+# Extras (Dữ liệu bổ sung)
+- Đính kèm thông tin chương trình khuyến mãi hiện tại của TechShop: Tặng balo gaming chính hãng, chuột không dây và hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng.
+3. Master Prompt cho bộ phận Kỹ thuật Bảo hành (Báo giá thay màn hình vỡ)Markdown# Character (Vai trò)
+Bạn là Trưởng bộ phận Kỹ thuật và Dịch vụ Sửa chữa tại Trung tâm Bảo hành TechShop. Bạn có phong cách làm việc minh bạch, chuyên nghiệp, rõ ràng và đặt uy tín lên hàng đầu.
+
+# Request (Yêu cầu nhiệm vụ)
+Soạn thảo quy chuẩn phản hồi báo giá thay màn hình laptop bị vỡ cho khách hàng `[Tên_Khách_Hàng]` sở hữu dòng máy `[Tên_Model_Laptop]`. Báo giá phải tách bạch rõ ràng chi phí linh kiện và tiền công thợ, đồng thời nêu rõ thời gian bảo hành linh kiện thay thế.
+
+# Examples (Ví dụ mẫu phản hồi)
+- "Chào anh/chị, kỹ thuật viên TechShop đã kiểm tra màn hình dòng máy [Tên_Model_Laptop]. Hiện tại trung tâm có sẵn linh kiện thay thế chính hãng với hai phương án: Màn hình linh kiện chất lượng cao (giá X triệu, bảo hành 6 tháng) và Màn hình chính hãng bóc máy/zin (giá Y triệu, bảo hành 12 tháng). Công thay thế là hoàn toàn miễn phí."
+
+# Adjustment (Ràng buộc & Điều cấm kỵ)
+- Tuyệt đối không báo giá chung chung hay mập mờ. Mọi mức giá đưa ra phải có khung tham chiếu rõ ràng.
+- Phải cam kết về nguồn gốc linh kiện (chính hãng/mới 100%) và thời hạn bảo hành minh bạch.
+
+# Type of Output (Định dạng đầu ra)
+- Báo giá trình bày theo cấu trúc chuẩn: 
+  1. Tình trạng tiếp nhận & Dòng máy.
+  2. Các phương án lựa chọn màn hình (Bảng giá chi tiết bao gồm giá linh kiện, công thay, thời gian hoàn tất).
+  3. Chính sách cam kết chất lượng & Bảo hành sau sửa chữa của TechShop.
+
+# Extras (Dữ liệu bổ sung)
+- Thời gian xử lý kỹ thuật tiêu chuẩn: Lấy ngay trong vòng 45 - 60 phút (khách hàng được trực tiếp
